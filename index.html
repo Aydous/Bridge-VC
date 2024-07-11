@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audio Player</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+    audio {
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+    <h1>Audio Player</h1>
+
+    <!-- Audio player container -->
+    <div id="audio-container"></div>
+
+    <script>
+        // Function to load audio files from 'data' folder
+        function loadAudioFiles() {
+            // Assuming 'data' folder is in the same directory as this HTML file
+            const dataFolder = 'data/';
+            const audioContainer = document.getElementById('audio-container');
+
+            // Array of audio filenames
+            const audioFiles = [
+                'audio1.mp3',
+                'audio2.mp3',
+                'audio3.mp3'
+                // Add more audio files as needed
+            ];
+
+            // Loop through each audio file
+            audioFiles.forEach(audioFile => {
+                // Create an audio element
+                const audio = document.createElement('audio');
+                audio.controls = true;
+
+                // Set the source of the audio element
+                audio.src = dataFolder + audioFile;
+
+                // Display the filename on the audio player
+                audio.addEventListener('loadedmetadata', function() {
+                    audio.title = audioFile; // Display filename as title
+                });
+
+                // Append the audio element to the container
+                audioContainer.appendChild(audio);
+            });
+        }
+
+        // Call the function to load audio files when the page loads
+        window.onload = function() {
+            loadAudioFiles();
+        };
+    </script>
+</body>
+</html>
